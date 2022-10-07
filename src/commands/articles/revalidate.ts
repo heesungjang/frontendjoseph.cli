@@ -6,6 +6,7 @@ interface Page {
   id:string,
   name:string
 }
+
 export default class ArticlesRevalidate extends Command {
   static description = 'Revalidate CDN cache on-demand for heelog articles'
 
@@ -21,11 +22,20 @@ export default class ArticlesRevalidate extends Command {
   public async run(): Promise<void> {
     const {flags} = await this.parse(ArticlesRevalidate)
     if (flags.all && flags.single) return this.error('❌ You can not use two flags together, please use --all or --single')
+    if (Object.keys(flags).length === 0) {
+      const answer = await inquirer.prompt([{
+        name: 'flag',
+        message: 'Please select a flag: ',
+        type: 'list',
+        choices: [{name: 'all'}, {name: 'single'}],
+      }])
+      flags[answer.flag] = true
+    }
 
     if (flags.all) {
       const token = await CliUx.ux.prompt('To revalidate articles, please enter the password: ')
       try {
-        CliUx.ux.action.start('validating ...')
+        CliUx.ux.action.start('revalidating...')
         const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
           data: {
             type: 'all',
@@ -64,7 +74,7 @@ export default class ArticlesRevalidate extends Command {
 
       if (page) {
         try {
-          CliUx.ux.action.start('validating ...')
+          CliUx.ux.action.start('revalidating...')
           const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
             data: {
               type: 'single',
