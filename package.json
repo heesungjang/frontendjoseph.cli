@@ -1,12 +1,12 @@
 {
   "name": "heelog.cli",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Node CLI for heelog.dev to revalidate the pages or page on demand ",
-  "author": "@heesungjang",
+  "author": "heesungjang",
   "bin": {
     "heelog.cli": "./bin/run"
   },
-  "homepage": "https://github.com/heesungjang/hello-world",
+  "homepage": "https://github.com/heesungjang",
   "license": "MIT",
   "main": "dist/index.js",
   "repository": "heesungjang/heelog-cli",
