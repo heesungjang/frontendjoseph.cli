@@ -26,7 +26,7 @@ export default class ArticlesRevalidate extends Command {
       const token = await CliUx.ux.prompt('To revalidate articles, please enter the password: ')
       try {
         CliUx.ux.action.start('validating ...')
-        const {data: {revalidated}} = await axios.get('http://localhost:3000/api/tokenValidation', {
+        const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
           data: {
             type: 'all',
             token: token,
@@ -43,7 +43,7 @@ export default class ArticlesRevalidate extends Command {
     }
 
     if (flags.single) {
-      const res = await axios.get<{pages:Page[]}>('http://localhost:3000/api/notionPages')
+      const res = await axios.get<{pages:Page[]}>('http://heelog.dev/api/notionPages')
       const {pages}  = res.data
       const answer = await inquirer.prompt([{
         name: 'article',
@@ -65,7 +65,7 @@ export default class ArticlesRevalidate extends Command {
       if (page) {
         try {
           CliUx.ux.action.start('validating ...')
-          const {data: {revalidated}} = await axios.get('http://localhost:3000/api/tokenValidation', {
+          const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
             data: {
               type: 'single',
               id: page.id,
