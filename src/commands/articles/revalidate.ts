@@ -1,4 +1,4 @@
-import axios from 'axios'
+import * as axios from 'axios'
 import * as inquirer from 'inquirer'
 import {CliUx, Command, Flags} from '@oclif/core'
 
@@ -36,7 +36,7 @@ export default class ArticlesRevalidate extends Command {
       const token = await CliUx.ux.prompt('To revalidate articles, please enter the password: ')
       try {
         CliUx.ux.action.start('revalidating...')
-        const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
+        const {data: {revalidated}} = await axios.get('http://heelog.dev/api/revalidate', {
           data: {
             type: 'all',
             token: token,
@@ -75,7 +75,7 @@ export default class ArticlesRevalidate extends Command {
       if (page) {
         try {
           CliUx.ux.action.start('revalidating...')
-          const {data: {revalidated}} = await axios.get('http://heelog.dev/api/tokenValidation', {
+          const {data: {revalidated}} = await axios.get('http://heelog.dev/api/revalidate', {
             data: {
               type: 'single',
               id: page.id,

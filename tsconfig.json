@@ -8,5 +8,8 @@
     "rootDir": "src",
     "target": "es2019"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "ts-node": {
+    "files": true
+  },
 }
