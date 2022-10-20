@@ -1,4 +1,4 @@
-import * as axios from 'axios'
+import axios from 'axios'
 import * as inquirer from 'inquirer'
 import {CliUx, Command, Flags} from '@oclif/core'
 

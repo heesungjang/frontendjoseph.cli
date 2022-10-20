@@ -21,7 +21,8 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.1.1",
     "axios": "^1.1.0",
-    "inquirer": "^8.0.0"
+    "inquirer": "^8.0.0",
+    "node-fetch": "^3.2.10"
   },
   "devDependencies": {
     "@oclif/test": "^2.2.2",
